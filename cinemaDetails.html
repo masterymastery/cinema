@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8" content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
+<title></title>
+    <link href="css/cinemaDetails.css" rel="stylesheet"/>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script>
+    var myScroll, myScroll2;
+    document.addEventListener('touchmove', function (e) {
+       /* e.preventDefault();*/
+    }, false);
+    function init() {
+        myScroll = new IScroll('#bannerImage', { scrollX: true, freeScroll: true, click: true, taps: true, zoom: true});
+        myScroll2 = new IScroll('#dateDiv', { scrollX: true, freeScroll: true, click: true, taps: true, zoom: true});
+    }
+    var data1 = [
+        ["17:45", "19点结束", "国语3D", "15号厅"],
+        ["19:45", "21点结束", "国语3D", "16号厅"],
+        ["21:45", "23点结束", "国语6D", "17号厅"],
+        ["23:45", "1点结束", "国语3D", "18号厅"],
+        ["01:45", "3点结束", "国语3D", "19号厅"]
+    ];
+    var data2 = [
+        ["27:45", "19点结束", "国语3D", "15号厅"],
+        ["19:45", "21点结束", "国语3D", "16号厅"],
+        ["21:45", "23点结束", "国语6D", "17号厅"],
+        ["23:45", "1点结束", "国语3D", "18号厅"],
+        ["01:45", "3点结束", "国语3D", "19号厅"]
+    ];
+    var data3 = [
+        /*["37:45", "19点结束", "国语3D", "15号厅"],
+        ["19:45", "21点结束", "国语3D", "16号厅"],
+        ["21:45", "23点结束", "国语6D", "17号厅"],
+        ["23:45", "1点结束", "国语3D", "18号厅"],
+        ["01:45", "3点结束", "国语3D", "19号厅"]*/
+    ];
+    $().ready(function () {
+        /*生成分数 星星*/
+        var score = 9.0;
+        score = score.toFixed(1);
+        var star;
+        if(score>0 && score <=2){
+            star = 1;
+        }
+        else if(score>2 && score<=4){
+            star = 2;
+        }
+        else if(score>4 && score<=6){
+            star = 3;
+        }
+        else if(score>6 && score<=8){
+            star = 4;
+        }
+        else{
+            star = 5;
+        }
+        $span = $("<span id='scroe'>"+ score +"</span>");
+        for(var i = 0;i<star;i++){
+            $img = $("<img src='images/star.png'/>");
+            $img.appendTo($("#star"));
+        }
+        $span.appendTo($("#star"));
+        /*生成影片预览图*/
+        var num = 10;//热映10部
+        var imagesName = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg"];
+        var keyPoint = 2;//默认指向第二部
+        $("#cinemaNum").html(num);
+        $ul = $("<ul></ul>");
+        for(var i = 0;i<imagesName.length;i++){
+            if(i == keyPoint-1){
+                $li = $("<li class='selected'><img src='images/"+imagesName[i]+"'/></li>");
+                $style = $("<style>#cinemaImage ul li.selected:after {content: '';position: absolute;width: 0;height: 0;line-height: 0;font-size: 0;border: 10px dashed transparent;border-bottom: 16px solid #fff;bottom: -12px;left: 50%;margin-left: -6px;z-index: 1000;}</style>");
+                $style.appendTo($li);
+            }else{
+                $li = $("<li><img src='images/"+imagesName[i]+"'/></li>");
+            }
+            $li.appendTo($ul);
+        }
+        $ul.appendTo("#cinemaImage");
+        /*电影小于四部的情况*/
+        if(imagesName.length == 3){
+            $("#cinemaImage ul").css("left",$("#cinemaImage img").width()/2);
+        }
+        else if(imagesName.length == 2){
+            $("#cinemaImage ul").css("left",$("#cinemaImage img").width());
+        }
+        else if(imagesName.length == 1){
+            $("#cinemaImage ul").css("left",$("#cinemaImage img").width()+$("#cinemaImage img").width()/2);
+        }
+        /*生成缩略图的宽度*/
+        var margin = 5;
+        var imageWidth = imagesName.length * ($("#cinemaImage img").width()+margin);
+        $("#cinemaImage").css("width",imageWidth);
+        $("#cinemaImage ul").css("width",imageWidth);
+        /*生成日期的宽度*/
+        var liWidth = $(window).width()*0.95/3;
+        var liLength = $("#date ul").children().length;
+        $("#date ul li").css("width",liWidth);
+        $("#date ul").css("width",liWidth*liLength);
+        $("#date").css("width",liWidth*liLength);
+        /*根据排期的场次计算页面的长度*/
+       /* var dateLength = data1.length;
+        var pageUpLength = $("#cinemaIntro").height()+$("#banner").height()+$("#cinemaSynopsis").height()+$("#dateDiv").height();*/
+      /*  $("#innerContent").height(pageUpLength+dateLength*61+100);//61是li的长度 100是下面预留*/
+        /*生成兑换信息*/
+        $ul = $("<ul id='ul0'></ul>");
+        for (var i = 0; i < data1.length; i++) {
+            $li = $("<li></li>");
+            for (var j = 0; j < data1[i].length; j+=2) {
+                $div1 = $("<div class='div1'></div>");
+                $startTime = $("<strong>" + data1[i][j] + "</strong>");
+                $startTime.appendTo($div1);
+                $endTime = $("<p class='small'>" + data1[i][j + 1] + "</p>");
+                $endTime.appendTo($div1);
+                $div1.appendTo($li);
+            }
+            $div3 = $("<div class='div3'></div>");
+            $charge = $("<span>立即兑换</span>");
+            $charge.appendTo($div3);
+            $div3.appendTo($li)
+            $li.appendTo($ul);
+        }
+        $ul.appendTo($("#dateDivContent"));
+
+        $ul = $("<ul id='ul1' style='display: none;'></ul>");
+        for (var i = 0; i < data2.length; i++) {
+            $li = $("<li></li>");
+            for (var j = 0; j < data2[i].length; j+=2) {
+                $div1 = $("<div class='div1'></div>");
+                $startTime = $("<strong>" + data2[i][j] + "</strong>");
+                $startTime.appendTo($div1);
+                $endTime = $("<p class='small'>" + data2[i][j + 1] + "</p>");
+                $endTime.appendTo($div1);
+                $div1.appendTo($li);
+            }
+            $div3 = $("<div class='div3'></div>");
+            $charge = $("<span>立即兑换</span>");
+            $charge.appendTo($div3);
+            $div3.appendTo($li)
+            $li.appendTo($ul);
+        }
+        $ul.appendTo($("#dateDivContent"));
+
+        $ul = $("<ul id='ul2' style='display: none;'></ul>");
+        for (var i = 0; i < data3.length; i++) {
+            $li = $("<li></li>");
+            for (var j = 0; j < data3[i].length; j+=2) {
+                $div1 = $("<div class='div1'></div>");
+                $startTime = $("<strong>" + data3[i][j] + "</strong>");
+                $startTime.appendTo($div1);
+                $endTime = $("<p class='small'>" + data3[i][j + 1] + "</p>");
+                $endTime.appendTo($div1);
+                $div1.appendTo($li);
+            }
+            $div3 = $("<div class='div3'></div>");
+            $charge = $("<span>立即兑换</span>");
+            $charge.appendTo($div3);
+            $div3.appendTo($li)
+            $li.appendTo($ul);
+        }
+        $ul.appendTo($("#dateDivContent"));
+
+
+        $("#cinemaImage").delegate("li", "click", function () {//点击影院介绍图
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $(this).append("<style>#cinemaImage ul li.selected:after {content: '';position: absolute;width: 0;height: 0;line-height: 0;font-size: 0;border: 10px dashed transparent;border-bottom: 16px solid #fff;bottom: -12px;left: 50%;margin-left: -6px;}</style>");
+        })
+        $("#cinemaSynopsis img").click(function(){//点击向右小箭头
+            location.href = "cinemaDetailsInner.html";
+        })
+        $("#date ul li").click(function () {//点击日期
+            $(this).addClass("dateSelected").siblings().removeClass("dateSelected");
+            var index = $(this).index();//将日期的index和下面的ul内容对应
+            $("#dateDivContent ul:eq("+ index +")").show("fast").siblings().hide();
+            var $ul = $("#dateDivContent ul:eq("+ index +")");
+            if($("#dateDivContent ul:eq("+ index +") li").length == 0 && $("#dateDivContent ul:eq("+ index +") p").length == 0){
+                var $text = $('<p style="padding:20px;">暂无排期</p>');
+                $text.appendTo($ul);
+            }
+        })
+        $("#dateDivContent .div3").click(function () {//点立刻兑换
+            $(this).parent().css("background-color", "#d9d8d4");
+            location.href = "selectSeatOnLine.html";
+        })
+    })
+</script>
+</head>
+<body onload="init()">
+<div id="wapper">
+    <div id="header">
+        <img style="float: left;max-width: .62rem;width: 90%;margin-right: 0.5em;margin-top: 0.05rem;margin-left: .15rem;"
+             src="images/logo1.png">
+        <img style="float: left;max-width: 0.01rem;width: 100%;margin-right: 0.05rem;margin-top: 0.05rem;max-height: 0.28rem;"
+             src="images/logoLine.jpg">
+        <img style="float:left;max-width:0.7rem;margin-top: 0.07rem;width:100%;" src="images/logo2.png">
+    </div>
+    <div id="content">
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;" src="images/bgTop.png"/>
+
+        <div id="innerContent">
+            <div id="cinemaIntro">
+                <p id="cinemaName">保利影城（苹果园店）</p>
+                <div id="star">
+                </div>
+                <p id="cinemaAddress">北京市石景山区阜石路165号华录大厦14层</p>
+            </div>
+            <div id="banner">
+                <div id="bannerTop" class="bold">
+                    <span class="ying">影</span>
+                    <span class="lightRed">选择电影(</span>
+                    <span class="gray">热映<span id="cinemaNum"></span>部</span>
+                    <span class="lightRed">)</span>
+                </div>
+                <!--<div style="background-color: #dd615f;width:100%;height:.15rem;"></div>-->
+                <div id="bannerImage">
+                    <div id="cinemaImage">
+                    </div>
+                </div>
+               <!-- <div style="background-color: #dd615f;width:100%;height:.15rem;"></div>-->
+                <!--<img style="width:100%;display: block;" src="images/arrow.png"/>-->
+            </div>
+            <div id="cinemaDetails">
+                <div id="cinemaSynopsis" style="text-align: left;position: relative;width:95%;margin:0 auto;">
+                    <p id="Name" style="margin-top:10px;margin-bottom:10px;" class="bold">白雪公主之神秘爸爸</p>
+                    <span>片长：</span><span id="footage" style="margin-right:.4rem;">105分钟</span>
+                    <span>类型：</span><span id="type">国语3D</span>
+                    <p><span>主演：</span><span id="Staring">马德华海登·克里斯滕森 / 尼古拉斯·凯奇 / 刘亦菲 / 安志杰 / 吉克隽逸 / 苏嘉航 / 王锦函
+                    </span></p>
+                    <img style="float:right;margin-right: .1rem;position: absolute;right: 0px;top: -3px;cursor: pointer;height: 36px;" src="images/rightArrow.png"/>
+                </div>
+                <div id="dateDiv">
+                    <div id="date">
+                        <ul>
+                            <li class="dateSelected"><span>8月18日</span></li>
+                            <li><span>8月19日</span></li>
+                            <li><span>8月20日</span></li>
+                            <li><span>8月21日</span></li>
+                            <li><span>8月22日</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="dateDivContent">
+                </div>
+            </div>
+        </div>
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;" src="images/bgBottom.png"/>
+    </div>
+</div>
+</body>
+</html>

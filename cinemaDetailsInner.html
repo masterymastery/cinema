@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
+    <title></title>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        html {
+            font-size: 625%;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .gray {
+            color: #b5b4b0;
+        }
+
+        body {
+            background: #FFF none repeat scroll 0% 0%;
+            color: #333;
+            text-align: left;
+            font-family: "微软雅黑", Arial;
+            font-size: 0.16rem;
+        }
+
+        #wapper {
+            min-width: 2.4rem;
+            margin: 0px auto;
+            width: 100%;
+            max-width: 7.2rem;
+            position: relative;
+        }
+
+        #header {
+            height: .4rem;
+            width: 100%;
+            max-width: 7.2rem;
+            overflow: hidden;
+            z-index: 9999;
+            background: RGB(239, 200, 188) none repeat scroll 0% 0%;
+        }
+
+        #header img {
+
+        }
+
+        #content {
+            background: url("images/bg4.png") repeat-y;
+            text-align: center;
+            padding-bottom: .1rem;
+            position: relative;
+            padding-top: .1rem;
+        }
+
+        #innerContent {
+            max-width: 6.72rem;
+            background-color: #f7f5f2;
+            width: 95%;
+            margin: 0 auto;
+            height: 5.95rem;
+            position: relative;
+        }
+
+        #cinemaIntro {
+            position: absolute;
+            top: 0px;
+            color: white;
+            margin-left:10%;
+            left:0px;
+            margin-top:.4rem;
+        }
+
+        #cinemaName {
+            font-size: .16rem;
+            font-weight: bold;
+            margin-bottom: .05rem;
+        }
+
+        #star {
+            position: relative;
+        }
+
+        #star img {
+            vertical-align: bottom;
+            width: .16rem;margin-right:.05rem;
+        }
+        #scroe {
+            position: absolute;
+            top: .02rem;color:#fe8417;margin-left: .05rem;
+        }
+        .descript{
+            font-size: .12rem;
+        }
+
+        #innerBottom{
+            width:100%;height:350px;background-color: rgb(247,245,242);position: absolute;top:200px;
+        }
+        #seeDate{
+            border:1px solid #02e1e0;border-radius: 4px;width:95%;height:.3rem;line-height:.3rem;color:#ff871e;text-align: center;cursor: pointer;margin:.1rem auto;
+        }
+        #movieIntro{
+            width:95%;text-align: left;margin:0 auto;
+        }
+    </style>
+    <script>
+        $().ready(function(){
+            /*alert($("#cinemaIntro").css("top"));
+            alert($("#cinemaIntro").css("left"));*/
+           /* alert($("#cinemaIntro img").width());
+            alert($("#cinemaIntro img").height());*/
+            /*生成分数 星星*/
+            var score = 8.0;
+            score = score.toFixed(1);
+            var star;
+            if(score>0 && score <=2){
+                star = 1;
+            }
+            else if(score>2 && score<=4){
+                star = 2;
+            }
+            else if(score>4 && score<=6){
+                star = 3;
+            }
+            else if(score>6 && score<=8){
+                star = 4;
+            }
+            else{
+                star = 5;
+            }
+            $span = $("<span id='scroe'>"+ score +"</span>");
+            for(var i = 0;i<star;i++){
+                $img = $("<img src='images/star.png'/>");
+                $img.appendTo($("#star"));
+            }
+            $span.appendTo($("#star"));
+            $(seeDate).click(function(){
+                location.href = "cinemaDetails.html";
+            })
+        })
+    </script>
+</head>
+<body onload="init()">
+<div id="wapper">
+    <div id="header">
+        <img style="  float: left;max-width: .62rem;width: 90%;margin-right: 0.5em;margin-top: 0.05rem;margin-left: .15rem;"
+             src="images/logo1.png">
+        <img style="float: left;max-width: 0.01rem;width: 100%;margin-right: 0.05rem;margin-top: 0.05rem;max-height: 0.28rem;"
+             src="images/logoLine.jpg">
+        <img style="float:left;max-width:0.7rem;margin-top: 0.07rem;width:100%;" src="images/logo2.png">
+    </div>
+    <div id="content">
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;" src="images/bgTop.png"/>
+
+        <div id="innerContent">
+            <img style="width:100%;opacity:0.6;" src="images/2.jpg">
+            <div id="cinemaIntro">
+                <div style="text-align: left;float:right;padding-top: 4px;">
+                    <p id="cinemaName">终结者之创世纪</p>
+                    <div id="star">
+
+                    </div>
+                    <p class="descript">动作冒险科幻</p>
+                    <p class="descript">IMAX，3D</p>
+                    <p class="descript">2015年8月25日大陆上映</p>
+                </div>
+                <img style="width:75px;height:104px;margin-right:.2rem;" src="images/2.jpg"/>
+            </div>
+            <div id="innerBottom">
+                <div id="seeDate">
+                    点击查看影片排期
+                </div>
+                <div id="movieIntro">
+                    <i class="bold" style="color:#422925;font-size: .14rem;text-align: justify;line-height: .24rem;">剧情简介:</i>
+                    <span style="text-align: justify;line-height: .24rem;font-size: .14rem;">公主莲（刘亦菲 饰）的父皇被长兄无情杀害，不得不带着年幼的弟弟昭（苏嘉航 饰）踏上逃亡之路，他们将穿越重重险境与国境另一端的将军们汇合。这一支忠心护主的军队已整装待发，誓死匡扶幼主重回朝廷继承皇位。谋反的皇兄（安志杰 饰）在国境内悬赏通缉莲昭二人，使得两人逃亡的路上无人相助。姐弟二人不得不雇佣看起来蛮横无理的异族流浪汉——阿肯（海登·克里斯滕森 Hayden Christensen 饰）充当他们的保镖。然而阿肯的来历并不简单：他饱受战争摧残，来到东方是为了逃避十字军带给他的血腥记忆……</span>
+                </div>
+            </div>
+        </div>
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;" src="images/bgBottom.png"/>
+    </div>
+</div>
+</body>
+</html>

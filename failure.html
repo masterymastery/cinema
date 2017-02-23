@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" content="width = device-width,initial-scale=1,user-scalable=no" name="viewport">
+    <title></title>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        body{
+            background: #FFF none repeat scroll 0% 0%;
+            color: #333;
+            text-align: left;
+            font-family: "微软雅黑",Arial;
+            font-size: 100%;
+        }
+
+        #wapper
+        {
+            min-width: 240px;
+            margin: 0px auto;
+            width: 100%;
+            max-width: 720px;
+            position: relative;
+        }
+        #header
+        {
+            height: 40px;
+            width: 100%;
+            max-width: 720px;
+            min-height: 17px;
+            overflow: hidden;
+            z-index: 9999;
+            background: RGB(239,200,188) none repeat scroll 0% 0%;
+        }
+        #header img{
+            transform:scale(0.8);
+        }
+        #content{
+            background: url("images/bg4.png") repeat-y;text-align: center;padding-bottom: 10px;position: relative;
+        }
+        #innerContent{
+            max-width: 672px;background-color:#f6f4f1;
+            width:95%;
+            margin:0 auto;
+            height:495px;text-align: center;color:#5f5f5f;
+        }
+        #innerContent h2{
+            padding-top:15px;padding-bottom: 5px;font-weight: normal;
+        }
+        #innerContent p{
+            padding-top:10px;padding-bottom: 5px;font-size: 0.8em;
+        }
+        #innerContent .edge{
+            max-width: 100px;width: 100%;vertical-align: text-top;  margin-top: -3px;
+        }
+        .goldenColor{
+            color:#a0947a;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        #intro .p{
+            padding: 4px;
+        }
+        .left{
+            width: 22px;height:22px;line-height:22px;background-color: #a18d5b;color:white;
+            border-radius: 10px;display: inline-block;margin-right:10px;
+        }
+        .right{
+            width: 150px;height:22px;line-height:22px;background-color: #a18d5b;color:white;
+            border-radius: 10px;display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="wapper">
+    <div id="header">
+        <img style="float:left;max-width:82px;width:100%;margin-right:0.5em;margin-left: 15px;" src="images/logo1.png">
+        <img style="float:left;max-width:1px;width:100%;margin-right:0.5em;" src="images/logoLine.jpg">
+        <img style="float:left;max-width:109px;width:100%;" src="images/logo2.png">
+    </div>
+    <div id="content">
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;padding-top: 10px;" src="images/bgTop.png"/>
+        <div id="innerContent">
+            <img style="margin-top: 76px;width:100px;" src="images/failure.png;"/>
+            <h2>哎呀！</h2>
+            <p style="font-size: 18px;">由于网络传输故障，出票失败了。</p>
+            <p style="font-size: 18px;">请重新兑换。谢谢您啦~</p>
+            <input style="background-color: #f29045;width: 80px;height:30px;line-height: 30px;margin-top: 20px;color:white;border:none;" type="submit" value="去兑换"/>
+        </div>
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;" src="images/bgBottom.png"/>
+    </div>
+</div>
+</body>
+</html>

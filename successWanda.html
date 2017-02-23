@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" content="width = device-width,initial-scale=1,user-scalable=no" name="viewport">
+    <title></title>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        body{
+            background: #FFF none repeat scroll 0% 0%;
+            color: #333;
+            text-align: left;
+            font-family: "微软雅黑",Arial;
+            font-size: 100%;
+        }
+
+        #wapper
+        {
+            min-width: 240px;
+            margin: 0px auto;
+            width: 100%;
+            max-width: 720px;
+            position: relative;
+        }
+        #header
+        {
+            height: 40px;
+            width: 100%;
+            max-width: 720px;
+            min-height: 17px;
+            overflow: hidden;
+            z-index: 9999;
+            background: RGB(239,200,188) none repeat scroll 0% 0%;
+        }
+        #header img{
+            transform:scale(0.8);
+        }
+        #content{
+            background: url("images/bg4.png") repeat-y;text-align: center;padding-bottom: 10px;position: relative;
+        }
+        #innerContent{
+            max-width: 672px;background-color:#f6f4f1;
+            width:95%;
+            margin:0 auto;
+           /* height:495px;*/text-align: center;color:#282828;
+        }
+        #innerContent h2{
+            padding-top:30px;padding-bottom: 20px;
+        }
+        #innerContent p{
+            padding-top:5px;padding-bottom: 5px;font-size: 0.8em;
+        }
+        #innerContent .edge{
+            max-width: 100px;width: 100%;vertical-align: text-top;  margin-top: -3px;
+        }
+        .goldenColor{
+            color:#a0947a;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        #intro .p{
+            padding: 4px;
+        }
+        .left{
+            width: 22px;height:22px;line-height:22px;background-color: #a18d5b;color:white;
+            border-radius: 10px;display: inline-block;margin-right:10px;
+        }
+        .right{
+            width: 150px;height:22px;line-height:22px;background-color: #a18d5b;color:white;
+            border-radius: 10px;display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="wapper">
+    <div id="header">
+        <img style="float:left;max-width:82px;width:100%;margin-right:0.5em;margin-left: 15px;" src="images/logo1.png">
+        <img style="float:left;max-width:1px;width:100%;margin-right:0.5em;" src="images/logoLine.jpg">
+        <img style="float:left;max-width:109px;width:100%;" src="images/logo2.png">
+    </div>
+    <div id="content">
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;padding-top: 10px;" src="images/bgTop.png"/>
+        <div id="innerContent">
+            <h2>成功领取电影票兑换码</h2>
+            <p class="bold">兑换码已发送到您的手机，请注意查收</p>
+            <p class="bold">电影通兑卡剩余兑换次数为<span>16</span>次</p>
+            <div style="margin-top: 10px;margin-bottom: 5px;">
+            <img class="edge" src="images/success2.jpg"/>
+            <img style="transform:scale(0.8);" src="images/success1.png"/>
+            <img class="edge" src="images/success2.jpg"/>
+                </div>
+            <p class="goldenColor">请妥善保管电子兑换码，如若丢失，需独自承担</p>
+            <p class="goldenColor">由于网络或影院原因出票可能会有延迟，请耐心等待</p>
+            <p class="goldenColor">如有疑问，请致电010-2553324</p>
+            <p style="margin-top:10px;" class="bold">使用方法</p>
+            <div id="intro" style="margin:0 auto;padding-bottom: 20px;">
+                <p class="p"><span class="left">1</span><span class="right">点击快速购票</span></p>
+                <p class="p"><span class="left">2</span><span class="right">选择影片场次</span></p>
+                <p class="p"><span class="left">3</span><span class="right">选座</span></p>
+                <p class="p"><span class="left">4</span><span class="right">确认订单</span></p>
+                <p class="p"><span class="left">5</span><span class="right">选择“使用兑换码”</span></p>
+                <p class="p"><span class="left">6</span><span class="right">输入兑换码</span></p>
+            </div>
+    </div>
+        <img style="display: block;margin: 0 auto;max-width: 672px;width:95%;" src="images/bgBottom.png"/>
+    </div>
+</div>
+</body>
+</html>
